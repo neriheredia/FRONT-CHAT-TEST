@@ -1,25 +1,22 @@
-import logo from './logo.svg';
 import './App.css';
+import { BrowserRouter, Routes, Route } from 'react-router-dom'
+import Mensseger from './pages/mensseger/Mensseger';
+import Login from './pages/login/Login';
+import { useContext } from 'react';
+import { AuthContext } from './context/AuthContext';
 
 function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+    const { user } = useContext(AuthContext)
+
+    console.log(user);
+
+    return (
+        <BrowserRouter>
+            <Routes>
+                <Route path='/' element={user ? <Mensseger /> : <Login />} />
+            </Routes>
+        </BrowserRouter>
+    );
 }
 
 export default App;
