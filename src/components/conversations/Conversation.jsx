@@ -12,7 +12,7 @@ const Conversation = ({ conversation, currentUser }) => {
 
         const getUser = async () => {
             try {
-                const res = await axios.get(`https://db-chat-test-h71i3032o-neriheredia.vercel.app/api/auth?userId=${friendId}`)
+                const res = await axios.get(`https://db-chat-test-qllg0w1a5-neriheredia.vercel.app/api/auth?userId=${friendId}`)
                 setUser(res.data);
             } catch (error) {
                 console.log(error);

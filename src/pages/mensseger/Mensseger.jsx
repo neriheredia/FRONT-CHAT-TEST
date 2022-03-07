@@ -5,7 +5,7 @@ import Message from '../../components/message/Message'
 import axios from 'axios'
 import './mensseger.css'
 import { AuthContext } from '../../context/AuthContext'
-import { io } from 'socket.io-client'
+import io from 'socket.io-client'
 
 const Mensseger = () => {
     const [conversations, setConversations] = useState([]);
@@ -21,7 +21,7 @@ const Mensseger = () => {
     console.log(user);
 
     useEffect(() => {
-        socket.current = io("ws://server-socket-chat-test.vercel.app");
+        socket.current = io("https://db-chat-test-qllg0w1a5-neriheredia.vercel.app/");
         socket.current.on("getMessage", (data) => {
             setArrivalMessage({
                 sender: data.senderId,
@@ -44,7 +44,7 @@ const Mensseger = () => {
     useEffect(() => {
         const getConversations = async () => {
             try {
-                const res = await axios.get("https://db-chat-test-h71i3032o-neriheredia.vercel.app/api/conversations/" + user._id);
+                const res = await axios.get("https://db-chat-test-qllg0w1a5-neriheredia.vercel.app/api/conversations/" + user._id);
                 setConversations(res.data);
             } catch (err) {
                 console.log(err);
@@ -56,7 +56,7 @@ const Mensseger = () => {
     useEffect(() => {
         const getMessages = async () => {
             try {
-                const res = await axios.get("https://db-chat-test-h71i3032o-neriheredia.vercel.app/api/messages/" + currentChat?._id);
+                const res = await axios.get("https://db-chat-test-qllg0w1a5-neriheredia.vercel.app/api/messages/" + currentChat?._id);
                 setMessages(res.data);
             } catch (err) {
                 console.log(err);
@@ -83,7 +83,7 @@ const Mensseger = () => {
         });
 
         try {
-            const res = await axios.post("https://db-chat-test-h71i3032o-neriheredia.vercel.app/api/messages", message);
+            const res = await axios.post("https://db-chat-test-qllg0w1a5-neriheredia.vercel.app/api/messages", message);
             setMessages([...messages, res.data]);
             setNewMessage("");
         } catch (err) {
